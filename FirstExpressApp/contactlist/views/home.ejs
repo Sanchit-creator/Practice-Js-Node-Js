@@ -3,10 +3,45 @@
         <title>
             <%= locals.title %>
         </title>
+
+        <link rel="stylesheet" href="/css/home.css">
     </head>
     <body>
-        <h1>
-            Rendered From Ejs
+        <h1 id="page-heading">
+            <i class="fas fa-paperclip"></i>
+            Contact List
         </h1>
+        <div class="container">
+                <ul>
+                    <% for(let i of contactlist) { %> 
+                        <li>
+                                <p><%= i.name %></p>
+                                <p><%= i.phone %></p>
+                            <div class="delete-button">
+                                 <!-- when using query it will be visible in tab link in browser -->
+                                <a href="/delete-contact/?phone=<%= i.phone %>&name=<%= i.name %>">
+                                 <!-- when using params -->
+                                <!-- <a href="/delete-contact/<%= i.phone %>"> -->
+                                    <i class="fas fa-window-close">
+                                    </i>
+                                </a>
+                            </div>
+                        </li>
+
+                        <% } %>
+
+                </ul>
+            <form action="/createcontact" method="POST">
+                <input type="text" name="name" placeholder="Enter Name" required>
+                <input type="number" name="phone" placeholder="Enter Phone" required>
+    
+                <button type="submit">Add contact</button>
+            </form>
+        </div>
+
+        
+
+        <script src="https://kit.fontawesome.com/a28448b859.js" crossorigin="anonymous"></script>
+        <script src="/js/home.js" type="text/javascript"></script>
     </body>
 </html>
