@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const port = 8000;
-
+const Contact = require('./models/contact');
+const db = require('./config/mongoose');
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -42,12 +43,29 @@ var contactList = [
     }
 ]
 
+
+// fetching from db
+
 app.get('/', function(req, res) {
     // console.log(req.myName);
     // res.send('<h1>Cool, it is running</h1>');
-    return res.render('home', {
+    // return res.render('home', {
+    //     title: "Contact Lists",
+    //     contactlist: contact
+    // })
+
+    Contact.find({}, function(err, contact) {
+        if (err) {
+            console.log('Error fetching contact');
+            return;
+        }
+
+        return res.render('home', {
         title: "Contact Lists",
-        contactlist: contactList
+        contactlist: contact
+    })
+
+
     })
 });
 
@@ -63,16 +81,33 @@ app.post('/createcontact', function(req, res) {
 
     // Step 3 we added parse data to our contact list
 
-    contactList.push({
+    // contactList.push({
+    //     name: req.body.name,
+    //     phone: req.body.phone,
+    // })
+
+     //Connection with db code
+     Contact.create({
         name: req.body.name,
-        phone: req.body.phone,
+        phone: req.body.phone
+    }, function(err, newContact) {
+        if (err) {
+            console.log('error in creating contact');
+            return;
+        }
+
+        console.log('**********', newContact);
+        return res.redirect('back');
     })
 
     // you can write 
     // contactList.push(req.body);
-    return res.redirect('/');
+    // return res.redirect('/');
+
     // you can also write 
     // return res.redirect('back');
+
+   
 
 
 
@@ -86,16 +121,33 @@ app.post('/createcontact', function(req, res) {
 app.get('/delete-contact/', function(req, res) {
     // when query
     // get the query from url
-    console.log(req.query);
-    let phone = req.query.phone;
+    // console.log(req.query);
+    // let phone = req.query.phone;
 
-    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
+    // let contactIndex = contactList.findIndex(contact => contact.phone == phone);
 
-    if (contactIndex != -1) {
-        contactList.splice(contactIndex, 1);
-    }
+    // if (contactIndex != -1) {
+    //     contactList.splice(contactIndex, 1);
+    // }
 
-    return res.redirect('back');
+    // DB get the id from query in url
+
+    let id = req.query.id;
+
+    // find contact in database using id and delete it
+
+    Contact.findByIdAndDelete(id, function(err) {
+       if (err) {
+        console.log('error in deleting and bobject');
+        return;
+       } 
+       return res.redirect('back');
+    });
+
+
+
+    
+
 
     // when params
     // console.log(req.params);
