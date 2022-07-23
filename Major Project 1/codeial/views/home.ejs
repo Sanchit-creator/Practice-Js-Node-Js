@@ -4,8 +4,75 @@
     <title>
         <%= title %>
     </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <title>Bootstrap demo</title> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Codeial / <%= title %></h1>
+    <div class="container">
+        <form action="/createtodo" method="POST">
+            <div class="row1">
+                <h1>TODO App</h1>
+            </div>
+            <div class="row2">
+                <p>Description</p>
+                <input id="description" placeholder="What you need to do?" name="description">
+            </div>
+            <div class="row3">
+                <div class="col1">
+                    <p>Category</p>
+                    <select id="category" name="category">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="col2">
+                    <p>Due Date</p>
+                    <input type="date" id="date" name="date">
+                </div>
+            </div>
+            <div class="row4">
+                <button id="addtask" type="submit"><i class="fa fa-solid fa-plus"></i> Add Task</button>
+                <button id="deleteTask" form="delete"><i class="fa fa-solid fa-trash"></i> Delete Task</button>
+            </div>
+        </form>
+        <div>
+             <ul> 
+                <form id="delete" action="/delete-list" method="POST">
+                    <% for(let i of todoList) { %>
+                        <% if(i.description) {%>
+                            <li>
+                                <div class="row5">
+                                <div class="col3">
+                                    <input type="checkbox" name="<%= i._id %>"> 
+                                </div>
+                                <div class="col4">
+                                    <p><%= i.description %></p>
+                                    <p><%= i.date %></p>
+                                </div>
+                                <div class="col5">
+                                    <button><%= i.category %></button>
+                                </div>
+                                </div>
+                            </li>
+                            <% } %>
+                        <% } %>
+                    </form>
+             </ul> 
+        </div>
+        
+          
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/a28448b859.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/"></script>
 </body>
 </html>

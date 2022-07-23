@@ -1,0 +1,168 @@
+body{
+    background-color: gray;
+    margin: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container{
+    min-height: 600px;
+    width: 50%;
+    background-color: white;
+    border: 2px black solid;
+    padding: 0%;
+}
+
+.row1{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.row2{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    border-top: 1px black solid;
+}
+
+.row2:hover{
+    background-color: lightgray;
+}
+
+.row2 input{
+    border: none;
+    background-color: transparent;
+    width: 80%;
+    outline: none;
+}
+
+.row3{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    border-top: 1px black solid;
+}
+
+.col1{
+    height: 100px;
+    flex: 50%;
+    padding: 10px;
+}
+
+.col1:hover{
+    background-color: lightgray;
+}
+
+.col1 select{
+    border: none;
+    background-color: transparent;
+    width: 90%;
+    outline: none;
+}
+
+
+
+.col2{
+    width: 49%;
+    height: 100px;
+    flex: 50%;
+    padding: 10px;
+}
+
+.col2:hover{
+    background-color: lightgray;
+}
+
+.col2 input{
+    border: none;
+    background-color: transparent;
+    width: 90%;
+    outline: none;
+}
+
+.row4{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px black solid;
+}
+
+.row4 button{
+    height: 75px;
+    width: 200px;
+    margin: 10px;
+    color: white;
+    margin-top: 30px;
+}
+
+.row4 button i{
+    width: 20px;
+    color: white;
+}
+
+#addtask{
+    background-color:darkgray;
+}
+
+#deleteTask{
+    background-color: red;
+}
+
+.row5{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    border-top: 1px black solid;
+}
+
+.col3{
+    height: 80px;
+    flex: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.col4{
+    /* width: 49%; */
+    height: 80px;
+    flex: 50%;
+    padding: 10px;
+}
+
+.col5{
+    width: 49%;
+    height: 80px;
+    flex: 30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.col5 button{
+    background-color: blueviolet;
+    color: white;
+    width: 120px;
+    height: 60px;
+}   
+
+
+
+
+
+
