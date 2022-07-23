@@ -56,6 +56,8 @@ app.post('/createtodo', function(req, res) {
     )
 })
 
+
+// Delete Multiple Items
 app.post('/delete-list', function(req, res) {
     Object.keys(req.body).forEach(function(key) {
         Connection.findByIdAndDelete(key, function(err) {
